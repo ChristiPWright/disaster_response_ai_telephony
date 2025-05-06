@@ -1,3 +1,5 @@
 #WIP
 Flask
 Twilio
+python-dotenv
+flask_session
