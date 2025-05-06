@@ -16,6 +16,9 @@ ENV/
 # Flask instance folder
 #instance/
 
+# Flask-Session storage (if using filesystem backend)
+flask_session/
+
 # Flask cache or logs
 *.log
 *.pid
