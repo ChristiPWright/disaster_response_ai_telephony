@@ -24,3 +24,8 @@ flask_session/
 *.pid
 *.db
 *.sqlite3
+
+# LiveKit
+inbound-trunk.json
+dispatch-rule.json
+gen.py
