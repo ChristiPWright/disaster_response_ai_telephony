@@ -25,11 +25,12 @@ class Assistant(Agent):
 
 
 async def entrypoint(ctx: agents.JobContext):
+    print('Hello from entrypoint')
     await ctx.connect()
 
     session = AgentSession(
         stt=deepgram.STT(model="nova-3", language="multi"),
-        # llm=openai.LLM(model="gpt-4o-mini"),
+        llm=openai.LLM(model="gpt-4o-mini"),
         tts=cartesia.TTS(),
         vad=silero.VAD.load(),
         turn_detection=MultilingualModel(),
@@ -51,6 +52,7 @@ async def entrypoint(ctx: agents.JobContext):
     )
 
 if __name__ == "__main__":
+    print('Starting')
     agents.cli.run_app(agents.WorkerOptions(
         entrypoint_fnc=entrypoint,
 
