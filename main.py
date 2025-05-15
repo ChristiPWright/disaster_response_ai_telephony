@@ -1,8 +1,3 @@
-# Configured Twilio + Twiml bin to LiveKit
-# Followed https://docs.livekit.io/agents/start/voice-ai/ docs through to Inbound Telephony integration -> no need for outbound
-# I can ring through, see my LiveKit session/room establish, see my main.py pointing to correct LiveKit.agents - registered worked is correct url
-# BUT my call just rings and doesn't pick up... debuging
-
 from dotenv import load_dotenv
 
 from livekit import agents
@@ -52,7 +47,6 @@ async def entrypoint(ctx: agents.JobContext):
     )
 
 if __name__ == "__main__":
-    print('Starting')
     agents.cli.run_app(agents.WorkerOptions(
         entrypoint_fnc=entrypoint,
 
