@@ -1,3 +1,5 @@
+#TODO: call end logic
+
 from dotenv import load_dotenv
 
 from livekit import agents
@@ -11,39 +13,39 @@ from livekit.plugins import (
 )
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
 
+from utils import load_prompt
+
 load_dotenv()
 
 
 class Assistant(Agent):
     def __init__(self) -> None:
-        super().__init__(instructions="You are a helpful voice AI assistant.")
+        super().__init__(
+            instructions=load_prompt('prompt.yaml'),
+            stt=deepgram.STT(model="nova-3", language="multi"),
+            llm=openai.LLM(model="gpt-4o-mini"),
+            tts=cartesia.TTS(),
+            vad=silero.VAD.load(),
+            turn_detection=MultilingualModel(),
+        )
 
 
 async def entrypoint(ctx: agents.JobContext):
-    print('Hello from entrypoint')
     await ctx.connect()
 
-    session = AgentSession(
-        stt=deepgram.STT(model="nova-3", language="multi"),
-        llm=openai.LLM(model="gpt-4o-mini"),
-        tts=cartesia.TTS(),
-        vad=silero.VAD.load(),
-        turn_detection=MultilingualModel(),
-    )
+    session = AgentSession()
+    agent = Assistant()
 
     await session.start(
         room=ctx.room,
-        agent=Assistant(),
+        agent=agent,
         room_input_options=RoomInputOptions(
-            # LiveKit Cloud enhanced noise cancellation
-            # - If self-hosting, omit this parameter
-            # - For telephony applications, use `BVCTelephony` for best results
-            noise_cancellation=noise_cancellation.BVC(), 
+            noise_cancellation=noise_cancellation.BVCTelephony(), 
         ),
     )
 
     await session.generate_reply(
-        instructions="Greet the user and offer your assistance."
+        instructions="We are going to get you help; but please know if you are having an emergency hang up and call 911."
     )
 
 if __name__ == "__main__":
