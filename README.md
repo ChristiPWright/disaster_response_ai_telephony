@@ -1,20 +1,16 @@
 # python main.py dev
 
-User Stories:
-As a patient, I want to provide my name and date of birth to the AI agent so that it can identify me and proceed with my appointment scheduling.
+MVP User Stories for Disaster Response AI Agent Flow
+As a caller, I want to be greeted with a disclaimer informing me that this is not a 911 service, so that I know this call is for non-emergency situations.
 
-As a patient, I want to provide my insurance information, including the payer name and ID, so that the AI agent can collect the necessary details for my insurance verification.
+As a caller, I want to hear a sympathetic and helpful agent who speaks slowly and calmly, so that I feel calm and supported during the call.
 
-As a patient, I want to tell the AI agent if I have a referral, and provide the referring physician’s name, so that the agent can record this information for proper referral handling.
+As a caller, I want to provide my location to the agent, so that my information can be logged for disaster response and resource allocation.
 
-As a patient, I want to describe my chief medical complaint or the reason for my visit so that the AI agent can document the issue and help with the scheduling process.
+As a caller, I want to provide a temporary location if I am unable to stay at my current location, so that the system can direct me to available resources in a safer place if needed.
 
-As a patient, I want to provide my address to the AI agent so that it can complete my demographic information and validate it through an external API if there are any issues or missing fields.
+As a caller, I want to tell the agent about my immediate needs (e.g., medical help, shelter, food, water) so that I can receive assistance based on my situation.
 
-As a patient, I want to provide my contact information, including phone number and optionally email, so that the AI agent can keep in touch with me regarding my appointment.
+As a disaster response agent, I want to log the caller’s location, needs, and temporary location (if provided), so that I can record and prioritize the information for further action.
 
-As a patient, I want to receive a list of the best available providers and their appointment times so that I can choose the most suitable option for my needs.
-
-As a patient, I want the call to remain active until the AI agent collects all of the required information so that my appointment is fully scheduled.
-
-As a system, I want to send a confirmation email to the patient after the call ends, containing the appointment details such as the provider's name, appointment date, and time, so that the patient has all the necessary information.
+As a disaster response system, I want to send an email to a roster of local volunteers with the logged caller information (location, needs, and temporary location), so that volunteers can take action and provide assistance.
